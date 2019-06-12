@@ -19,8 +19,8 @@ public class RootConfig {
 	@Bean
 	public DataSource dataSource() {
 		HikariConfig hikariConfig = new HikariConfig();
-		hikariConfig.setDriverClassName("net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator");
-		hikariConfig.setJdbcUrl("jdbc:log4jdbc:postgresql://localhost:5432/postgres");
+		hikariConfig.setDriverClassName("org.postgresql.Driver");
+		hikariConfig.setJdbcUrl("jdbc:postgresql://localhost:5432/postgres");
 		hikariConfig.setUsername("postgres");
 		hikariConfig.setPassword("gkdwjdtkf1!");
 		
