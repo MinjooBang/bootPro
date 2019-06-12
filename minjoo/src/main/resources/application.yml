@@ -1,0 +1,16 @@
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp  datasource:    hikari:      jdbc-url: jdbc:log4jdbc:postgresql://localhost:5432/postgres
+      username: postgres
+      password: gkdwjdtkf1!
+      driver-class-name: net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator  h2:    console:      enabled: true
+      
+  jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+ 
+            
