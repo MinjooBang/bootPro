@@ -1,4 +1,4 @@
-mybatis:  mapper-locations:  -   "classpath*:**/*Mapper.xml"
+mybatis:  mapper-locations:  -   "classpath:/resources/com/minjoo/demo/mapper/*Mapper.xml"
 spring:
   mvc:
     view:

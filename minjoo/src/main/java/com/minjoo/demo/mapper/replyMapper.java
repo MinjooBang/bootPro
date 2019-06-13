@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.minjoo.demo.domain.Criteria;
 import  com.minjoo.demo.domain.ReplyVo;
-@Mapper
+
 public interface replyMapper {
 	
 	public int insert(ReplyVo vo);
