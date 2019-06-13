@@ -2,9 +2,11 @@ package  com.minjoo.demo.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.minjoo.demo.domain.BoardVO;
 import com.minjoo.demo.domain.Criteria;
-
+@Mapper
 public interface BoardMapper {
 	//@Select("select * from book_ex where bno > 0") 
 	public List<BoardVO> getList();
