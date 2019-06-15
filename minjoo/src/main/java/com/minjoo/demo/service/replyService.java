@@ -41,7 +41,7 @@ public class replyService {
 		log.info("modify--"+vo);
 		return mapper.update(vo);
 	}
-	
+	@Transactional
 	public int remove(Long rno) {
 		log.info("delete...");
 		return mapper.delete(rno);
