@@ -50,7 +50,8 @@
 	  		contents,
 	  		writer,
 	  		regdate,
-	  		updatedate
+	  		updatedate,
+	  		replycnt
 	  FROM 
 	  	(
 	 		SELECT 	/*+INDEX_DESC(book_ex pk_board)*/
@@ -98,4 +99,7 @@
  	]]>
  </select>
  
+ <update id="updateReplyCnt" >
+ 	update book_ex set replycnt = replycnt + #{amount} where bno =#{bno}
+ </update>
  </mapper>

@@ -7,6 +7,7 @@ import com.minjoo.demo.domain.Criteria;
 import   com.minjoo.demo.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;
@@ -24,7 +25,6 @@ public class BoardServiceImpl implements BoardService {
 
 	@Setter(onMethod_ = @Autowired)
 	private BoardMapper mapper;
-	
 	
 	@Override
 	public void register(BoardVO board) {

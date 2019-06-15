@@ -3,6 +3,7 @@ package  com.minjoo.demo.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.minjoo.demo.domain.BoardVO;
 import com.minjoo.demo.domain.Criteria;
@@ -22,6 +23,7 @@ public interface BoardMapper {
 	
 	public List<BoardVO> getListWithPaging(Criteria cri); 
 	public int getTotalCount(Criteria cri);
+	public void updateReplyCnt(@Param("bno") long bno,@Param("amount") int amount);
 	
 	
 }
