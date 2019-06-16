@@ -29,8 +29,6 @@ dependencies {
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation 'org.springframework.boot:spring-boot-devtools'
 	implementation 'com.zaxxer:HikariCP'
-	implementation 'org.aspectj:aspectjrt:1.9.2'
-	implementation 'org.aspectj:aspectjweaver:1.9.2'
 	
 	
 	compileOnly 'org.projectlombok:lombok'

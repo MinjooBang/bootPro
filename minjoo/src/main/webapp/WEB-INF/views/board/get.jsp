@@ -38,7 +38,19 @@
 	                  	 	<input type="hidden" id="amount" name="amount" value='<c:out value="${cri.amount}"/>'>
 	                  	 	<input type="hidden" id="amount" name="keyword" value='<c:out value="${cri.keyword}"/>'>
 	                  	 	<input type="hidden" id="amount" name="type" value='<c:out value="${cri.type}"/>'>
-	                  	 </form>  	
+	                  	 </form>  
+	                  	 
+	                  	 <ul class="chat">
+	                  	 	<li class="left clearfix" data-rno="12">
+	                  	 	 <div>
+	                  	 	 	<div class="header">
+	                  	 	 		<strong class="primary-font">user00</strong>
+	                  	 	 		<small class="pull-right text-muted">2018-01-01 13:13</small>
+	                  	 	 	</div>
+	                  	 	 	<p>Good Job!!</p>
+	                  	 	 </div>
+	                  	 	</li>
+	                  	 </ul>	
 	                  
                  </div>
                  <!-- /.panel-body -->
@@ -61,8 +73,36 @@
 			operForm.find("#bno").remove();
 			operForm.attr("action","/board/list").submit();
 		});
+
+		var bnoValue = '<c:out value="${board.bno}"/>';
+		var replyUL = $(".chat");
+
+		showList(1);
+
+		function showList(page){
+
+			replyService.getList({bno:bnoValue,page:page ||1},function(list){
+				
+				var str ="" ;
+				if(list == null || list.length == 0){
+					replyUL.html("");
+					return;
+				}
+				for(var i =0 , len = list.length || 0 ;i<len;i++){
+					str += "<li class='left clearfix' data-rno='"+list[i].rno+"'>";
+					str += "<div><div class='header'><strong class ='primary-front'>"+list[i].replyer+"</strong>";
+					str += "<small class='pull-right text-muted'>"+list[i].replyDate+"</small></div>";
+					str += "<p>"+list[i].reply+"</p></div></li>";
+					}
+				
+				replyUL.html(str);
+				
+			});
+
+
+		}
 	});
-	
+/* 	
 	console.log("===============");
 	console.log("JS test");
 	
@@ -73,7 +113,7 @@
 		function (result){
 			alert("Result : "+result);
 		}
-	);  */
+	);  
 
 	replyService.getList({bno:bnoValue,page:1},function(list){
 		
@@ -82,7 +122,7 @@
 		} 
 	});
 /* 	console.log("===============");
-	console.log("오늘 한게 다 안되면 어케..?"); */
+	console.log("오늘 한게 다 안되면 어케..?"); 
 	
 	replyService.remove(28,function(count){
 		console.log(count);
@@ -100,8 +140,8 @@
 	 });
 	
 
-	 
-	 
+	 replyService.get(10,function(data){console.log(data)});
+	  */
 	</script>
  	 
      

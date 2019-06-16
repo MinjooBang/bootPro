@@ -21,7 +21,7 @@ public class SampleTxServiceTests {
 	
 	@Test
 	public void testLog() {
-		String str = "Starry/r/n"+"Starry night/r/n"+"point your palette blue and grey /r/n"+"Look out on a summer's day";
+		String str = "longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongv";
 		log.info("testLog ::"+str.getBytes().length);
 		service.addData(str);
 	}
