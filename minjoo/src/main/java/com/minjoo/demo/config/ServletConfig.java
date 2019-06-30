@@ -12,7 +12,10 @@ import org.springframework.validation.MessageCodesResolver;
 import org.springframework.validation.Validator;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
+import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.multipart.support.StandardMultipartHttpServletRequest;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
@@ -46,18 +49,25 @@ public class ServletConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
 	
-	@Bean(name = "multipartResolver")
-	public CommonsMultipartResolver getResolver() throws IOException {
-		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
-		
-		resolver.setMaxUploadSize(1024 * 1024 * 10);
-		resolver.setMaxUploadSizePerFile(1024 * 1024 * 2);
-		resolver.setMaxInMemorySize(1024 * 1024);
-		resolver.setUploadTempDir(new FileSystemResource("c:\\study\\upload\\tmp"));
-		resolver.setDefaultEncoding("UTF-8");
-		
+	/*
+	 * @Bean(name = "multipartResolver") public CommonsMultipartResolver
+	 * getResolver() throws IOException { CommonsMultipartResolver resolver = new
+	 * CommonsMultipartResolver();
+	 * 
+	 * resolver.setMaxUploadSize(1024 * 1024 * 10);
+	 * resolver.setMaxUploadSizePerFile(1024 * 1024 * 2);
+	 * resolver.setMaxInMemorySize(1024 * 1024); resolver.setUploadTempDir(new
+	 * FileSystemResource("c:\\study\\upload\\tmp"));
+	 * resolver.setDefaultEncoding("UTF-8");
+	 * 
+	 * return resolver; }
+	 */
+	@Bean
+	public MultipartResolver multipartResolver() {
+		StandardServletMultipartResolver resolver = new StandardServletMultipartResolver();
 		return resolver;
 	}
+	
 
 	@Override
 	public void configurePathMatch(PathMatchConfigurer configurer) {

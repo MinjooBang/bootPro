@@ -3,6 +3,7 @@ package com.minjoo.demo.config;
 
 
 import javax.servlet.Filter;
+import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletRegistration;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
@@ -28,6 +29,8 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 	@Override
 	protected void customizeRegistration(ServletRegistration.Dynamic registration) {
 		registration.setInitParameter("throwExceptionIfNoHandlerFound", "true");
+		MultipartConfigElement multipartConfig = new MultipartConfigElement("c://upload//temp",20971250,41943040,20971250);
+		registration.setMultipartConfig(multipartConfig);
 	}
 
 	@Override

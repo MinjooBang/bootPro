@@ -22,7 +22,7 @@ public class SampleServiceTest {
 	public void testClass() {
 		
 		log.info("testClass : "+service);
-		log.info("estClass : "+service.getClass().getName());
+		log.info("testClass : "+service.getClass().getName());
 		
 	}
 	@Test
