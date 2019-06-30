@@ -1,6 +1,9 @@
 package com.minjoo.demo.controller;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,14 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 public class UploadController {
+	
+	private String getFolder() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		String str = sdf.format(date);
+		return str.replace("-",File.separator);
+		
+	}
 	
 	@GetMapping("/uploadForm")
 	public void uploadForm() {
@@ -51,8 +62,12 @@ public class UploadController {
 	public void uploadAjaxAction(MultipartFile[] uploadFile) {
 		
 		log.info("uploadAjaxAction::");
-		
 		String uploadFolder = "c://upload";
+		File uploadPath = new File(uploadFolder,getFolder());
+		log.info("upload path :"+uploadPath);
+		if(uploadPath.exists() == false) {
+			uploadPath.mkdirs();
+		}
 		for(MultipartFile multipartFile :uploadFile) {
 			log.info("--------------------------for--");
 			log.info("uploadFileName"+multipartFile.getOriginalFilename());
@@ -63,13 +78,17 @@ public class UploadController {
 			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("//")+1);
 			log.info("only file name: "+uploadFileName);
 			
-			File saveFile = new File(uploadFolder,uploadFileName);
+			UUID uuid = UUID.randomUUID();
+			uploadFileName = uuid.toString()+"-"+uploadFileName;
+			
+			File saveFile = new File(uploadFolder, uploadFileName);
 			
 			try {
 				multipartFile.transferTo(saveFile);
 			} catch (Exception e) {
-				log.error(e.getMessage());
-			}//end try
+				log.info(e.getMessage());
+				
+			}//end try 
 			
 			
 		}//end for
@@ -79,7 +98,6 @@ public class UploadController {
 		
 	}//uploadAjaxAction
 
-	
 	
 	
 }//UploadController
