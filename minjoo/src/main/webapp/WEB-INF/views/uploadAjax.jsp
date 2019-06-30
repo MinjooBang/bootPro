@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>upload ajax</title>
 
 </head>
 <body>
@@ -13,16 +13,36 @@
 	 </div>
 	 
 	 <button id="uploadBtn">Upload</button>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
 $(document).ready(function(){
-	$("$uploadBtn").on("click",function(e){
+	$("#uploadBtn").on("click",function(e){
 		var formData = new FormData();
 		var inputFile = $("input[name='uploadFile']");
 		var files = inputFile[0].files;
-
+	
 		console.log(files);
+	
+		//add filedata to formData
+		for(var i=0;i<files.length;i++){
+			formData.append("uploadFile",files[i]);
+		}
+
+		$.ajax({
+			url: "/uploadAjaxAction",
+			processData: false,
+			contentType: false,
+			data: formData,
+			type: 'POST',
+			success: function(result){
+				alert("uploaded");
+			}
+			
+		});//$.ajax
+	
+		
 	});
+	
 });
 </script>
 </body>
