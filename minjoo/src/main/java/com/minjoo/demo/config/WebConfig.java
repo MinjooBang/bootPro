@@ -13,7 +13,7 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] {RootConfig.class};
+		return new Class[] {RootConfig.class ,WebSecurityConfig.class};
 	}
 
 	@Override
@@ -25,6 +25,7 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 	protected String[] getServletMappings() {
 		return new String[] { "/" };
 	}
+	
 
 	@Override
 	protected void customizeRegistration(ServletRegistration.Dynamic registration) {
@@ -42,9 +43,6 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 	}
 	
 	
-
 	
-
-
 	
 }//WebConfig
